@@ -1,47 +1,54 @@
 //obtener el body :D
 var hoja = document.getElementsByTagName("BODY")[0];
-var imagenCoder = document.getElementsByClassName('imagenes');
-console.log(imagenCoder);
+var foto;
+var contador = 0;
+// var imagenCoder = document.getElementsByClassName('imagenes');
+// var longitud = imagenCoder.length;
+// console.log(imagenCoder);
 //crear elementos
 var section = document.createElement('section');
-var fotos = document.createElement('img');
 //dar propiedades a los elementos
 //section
 section.style.width = "600px";
 section.style.height = "500px";
 section.style.border = "thick solid #0000FF"; //le puedes poner un 1px y si lo lee
 //fin de la section
-//imagenes
-fotos.src = "assets/img/1.jpg";
-fotos.className = "imagenes";
-fotos.style.width = "100px";
-fotos.style.height = "100px";
-fotos.style.position = "relative";
-//fin de imagenes
-
-//crear un for para recorrer las imagenes
-// for(var i=0; i < imagenes.length; i++){
-
-// }
+//crear una funcion para las imagenes
+var fotos = function(){
+	contador++;	
+	// console.log(contador);
+	var foto1 = document.createElement('img');
+	var ruta = "assets/img/" + contador + ".jpg";
+	console.log(ruta); 
+	foto1.src = ruta;
+	foto1.className = "imagenes";
+	foto1.style.width = "100px";
+	foto1.style.height = "100px";
+	foto1.style.position = "relative";
+	return foto1;
+}
 //funcion de los div 
-var Cuadros = function(color,ancho,altura,posicion,alineamiento,valorTop,valorRight,valorLeft,valorBottom){
+var cuadros = function(color,ancho,altura,posicion,alineamiento,valorTop,valorRight,valorLeft,valorBottom,marginLeft){
 	var cuadro = document.createElement('div');
 	cuadro.style.border = color;
 	cuadro.style.width = ancho;
 	cuadro.style.height = altura;
 	cuadro.style.position = posicion;
-	cuadro.style.display = "inline-block";
+	cuadro.style.display = alineamiento;
 	cuadro.style.top = valorTop;
 	cuadro.style.right = valorRight;
 	cuadro.style.left = valorLeft;
 	cuadro.style.bootom = valorBottom;
-	// cuadro.src = rutaImagen;
-	cuadro.appendChild(fotos);
+	cuadro.style.marginLeft = marginLeft;
+	cuadro.appendChild(fotos());	 
 	section.appendChild(cuadro);
-
 }
-Cuadros('1px solid red','100px','100px','relative','100px','0px','100px','50px');	
-Cuadros('10px solid purple','100px','100px','relative','100px','0px','150','50px');	
+cuadros('10px solid red','200px','100px','relative','inline-block','100px','0','0','50px','80px');	
+cuadros('10px solid green','200px','100px','relative','inline-block','100px','0px','150','50px','80px');	
+cuadros('10px solid purple','100px','100px','relative','inline-block','100px','0px','250','50px');	
+cuadros('10px solid yellow','100px','100px','relative','inline-block','100px','0px','300px','50px');	
+cuadros('10px solid grey','100px','100px','relative','inline-block','100px','0px','450','50px');	
+cuadros('10px solid black','100px','100px','relative','inline-block','100px','0px','550','50px');	
 //dibujar
 hoja.appendChild(section);
-// section.appendChild(fotos);
+
